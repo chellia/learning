@@ -3,6 +3,7 @@ package com.learn.ds;
 public class Stack 
 {
 	int size = 10;
+	
 	int[] stack = new int[size];
 	int top = -1;
 	
