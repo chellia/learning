@@ -38,7 +38,7 @@ public class Stack
 		return a;
 	}
 
-	private boolean isEmpty() {
+	boolean isEmpty() {
 		if(top == -1)
 			return true;
 		return false;
