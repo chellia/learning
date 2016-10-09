@@ -59,12 +59,24 @@ public class StackPolindrom
 	
 	public static void main(String args[])
 	{
-		Stack myStack = new Stack();
+		StackPolindrom myStack = new StackPolindrom();
 		myStack.push('a');
 		myStack.push('b');
+		myStack.push('a');
 		myStack.push('b');
 		myStack.push('a');
 		myStack.display();
+		
+		int size = myStack.top+1;
+		int mid = 0;
+		if(size % 2 != 0)
+		{
+			mid = size/2;
+		}else{
+			mid = size /2;
+		}
+		
+		isPoli(myStack,mid);
 		/*myStack.pop();
 		myStack.pop();
 		myStack.display();
@@ -74,6 +86,31 @@ public class StackPolindrom
 			myStack.push(i);
 		}
 		myStack.display();*/
+	}
+
+	private static char isPoli(StackPolindrom myStack, int mid) {
+		if(myStack.top <= mid)
+		{
+			if(mid % 2 != 0)
+			{
+				myStack.pop();
+				return myStack.pop();
+			}else{
+				myStack.pop();
+				return myStack.pop();
+			}
+			
+			
+		}
+		else{
+			char temp = myStack.pop();
+			char data = isPoli(myStack,mid);
+			if(temp != data)
+			{
+				System.out.println(" it is not");
+			}
+		}
+		return 'a';
 	}
 
 }

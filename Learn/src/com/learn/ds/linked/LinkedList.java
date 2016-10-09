@@ -260,6 +260,23 @@ public class LinkedList
 		LinkedList lLinkedList = new LinkedList();
 		lLinkedList.display();
 		System.out.println();
+		lLinkedList.insertAtBegining(1);
+		lLinkedList.display();
+		System.out.println();
+		lLinkedList.insertAtBegining(2);
+		lLinkedList.display();
+		System.out.println();
+		lLinkedList.insertAtBegining(3);
+		//lLinkedList.insertAtBegining(4);
+		lLinkedList.display();
+		System.out.println();
+		 lLinkedList.reverse(lLinkedList.head);
+		lLinkedList.display();
+		System.out.println();
+		lLinkedList.head=lLinkedList.reverseInPairs(lLinkedList.head,lLinkedList.head,lLinkedList.head);
+		lLinkedList.display();
+		System.out.println();
+		/*
 		lLinkedList.insertAtBegining(2);
 		lLinkedList.display();
 		System.out.println();
@@ -268,17 +285,8 @@ public class LinkedList
 		System.out.println();
 		lLinkedList.insertAtBegining(0);
 		lLinkedList.display();
-		System.out.println();
-		lLinkedList.insertAtBegining(2);
-		lLinkedList.display();
-		System.out.println();
-		lLinkedList.insertAtBegining(1);
-		lLinkedList.display();
-		System.out.println();
-		lLinkedList.insertAtBegining(0);
-		lLinkedList.display();
-		System.out.println();
-		lLinkedList.arrange(lLinkedList.head);
+		System.out.println();*/
+	//	lLinkedList.arrange(lLinkedList.head);
 		/*System.out.println(lLinkedList.isPolindrom(lLinkedList.head, lLinkedList.head));
 		lLinkedList.displayBack(lLinkedList.head);*/
 		/*lLinkedList.insertAtEnd(7);
@@ -298,6 +306,46 @@ public class LinkedList
 		Node node = lLinkedList.findNthNodefromBack(lLinkedList.head,1);
 		System.out.println(node.value);*/
 		
+	}
+	
+	public Node reverse(Node node)
+	{
+		if(node == null || null == node.next)
+		{
+			head = node;
+			return node;
+		}
+		Node temp = node;
+		Node cur = reverse(node.next);
+		cur.next = node;
+		node.next = null;
+		return node;
+	}
+	
+	public Node reverseInPairs(Node head,Node prev,Node node)
+	{
+		if(node == null || node.next == null)
+		{
+			return head;
+			
+		}
+		else{
+			
+			Node curNode = node;
+			Node nextNode = curNode.next;
+			Node temp = nextNode.next;
+			nextNode.next = curNode;
+			curNode.next = temp;			
+			if(node == head)
+			{
+				head = nextNode;
+				prev = curNode;
+			}else{
+				prev.next = nextNode;
+				prev = curNode;
+			}
+			return reverseInPairs(head,prev,temp);
+		}
 	}
 
 }

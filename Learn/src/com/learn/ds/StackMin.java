@@ -1,11 +1,13 @@
 package com.learn.ds;
 
-public class Stack 
+public class StackMin 
 {
 	int size = 10;
 	
 	int[] stack = new int[size];
+	int[] minStack = new int[size];
 	int top = -1;
+	int minTop = -1;
 	
 	public void push(int data)
 	{
@@ -13,6 +15,17 @@ public class Stack
 		{
 			System.out.println("Over Flow");
 		}else{
+			if(minTop < 0)
+			{
+				this.minStack[++minTop] = data;
+			}else{
+				int temp = minStack[minTop];
+				if(data < temp)
+				{
+					this.minStack[minTop] = temp;
+					this.minStack[++minTop] = data;
+				}
+			}
 			this.stack[++top]=data;
 		}
 	}
@@ -23,9 +36,13 @@ public class Stack
 		return false;
 	}
 	
-	public int peek()
+	public int getMinimum()
 	{
-		return this.stack[top];
+		if(minTop > -1)
+		{
+			return this.minStack[minTop];
+		}
+		return -1;
 	}
 	
 	public int pop()
@@ -38,12 +55,17 @@ public class Stack
 		else{
 			//stack[--top] = 0;
 			a = this.stack[top];
+			int temp = this.minStack[minTop];
+			if(a == temp)
+			{
+				this.minTop--;
+			}
 			this.top--;
 		}
 		return a;
 	}
 
-	boolean isEmpty() {
+	private boolean isEmpty() {
 		if(top == -1)
 			return true;
 		return false;
@@ -65,22 +87,23 @@ public class Stack
 	
 	public static void main(String args[])
 	{
-		Stack myStack = new Stack();
-		/*myStack.push(1);
+		StackMin myStack = new StackMin();
+		myStack.push(10);
 		//myStack.display();
-		myStack.push(2);
+		myStack.push(11);
 		//myStack.display();
-		myStack.pop();
-		myStack.pop();
-		myStack.display();
-		myStack.pop();
-		for(int i =0;i<=10;i++)
+		//myStack.pop();
+		//myStack.pop();
+		//myStack.display();
+		
+		//myStack.pop();
+		for(int i =3;i<7;i++)
 		{
 			myStack.push(i);
 		}
-		myStack.display();*/
-		
-		int[] arr = new int[]{4,5,2,25};
+		myStack.display();
+		System.out.println("minimum element="+ myStack.getMinimum());
+		/*int[] arr = new int[]{4,5,2,25};
 		
 		for(int i = 0;i<arr.length;i++)
 		{
@@ -107,7 +130,7 @@ public class Stack
 		while(myStack.top >=0)
 		{
 			System.out.println(myStack.pop() + "-->"+ "-1");
-		}
+		}*/
 	}
 
 }
