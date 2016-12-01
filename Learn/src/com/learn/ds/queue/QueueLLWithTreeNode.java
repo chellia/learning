@@ -21,6 +21,20 @@ public class QueueLLWithTreeNode
 		return deleteAtBigining();
 	}
 	
+	public com.learn.ds.tree.Node peek()
+	{
+		if(front == null || rear == null)
+		{
+			//System.out.println("Under Flow");
+			return null;
+		}
+		else{
+			com.learn.ds.tree.Node data = front.data;
+			//front = front.next;
+			return data;
+		}
+	}
+	
 	public void insertAtEnd(com.learn.ds.tree.Node data)
 	{
 		if(rear == null && front == null)
